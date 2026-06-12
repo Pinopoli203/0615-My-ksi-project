@@ -40,13 +40,9 @@ Route::get('/forgot-password', function () {
 Route::post('/forgot-password', function (Request $request) {
     $request->validate(['email' => 'required|email']);
 
-    $status = Password::sendResetLink(
-        $request->only('email')
-    );
+    Password::sendResetLink($request->only('email'));
 
-    return $status === Password::RESET_LINK_SENT
-        ? back()->with('status', 'Link reset dikirim 🔥')
-        : back()->withErrors(['email' => 'Email tidak ditemukan 😭']);
+    return back()->with('status', 'Jika email terdaftar, link reset akan dikirim.');
 });
 
 Route::get('/reset-password/{token}', function ($token) {
@@ -57,7 +53,7 @@ Route::post('/reset-password', function (Request $request) {
     $request->validate([
         'token' => 'required',
         'email' => 'required|email',
-        'password' => 'required|min:4|confirmed',
+        'password' => 'required|min:8|confirmed',
     ]);
 
     $status = Password::reset(
@@ -69,7 +65,7 @@ Route::post('/reset-password', function (Request $request) {
     );
 
     return $status === Password::PASSWORD_RESET
-        ? redirect('/login')->with('success', 'Password berhasil direset 🔥')
-        : back()->withErrors(['email' => 'Reset gagal 😭']);
+        ? redirect('/login')->with('success', 'Password berhasil direset')
+        : back()->withErrors(['email' => 'Reset gagal, pastikan email benar dan token valid']);
 });
 

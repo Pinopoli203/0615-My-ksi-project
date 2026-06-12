@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +23,7 @@
             width: 380px;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
@@ -45,7 +46,7 @@
         }
 
         /* Input field biar lonjong dan abu-abu */
-        input[type="text"], 
+        input[type="text"],
         input[type="password"] {
             width: 100%;
             padding: 15px 20px;
@@ -95,21 +96,24 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="card">
-    <div class="header-green">
-        <h2>Reset Password</h2>
-    </div>
-
-    <form method="POST" action="/reset-password">
-    @csrf
-    <input type="hidden" name="token" value="{{ $token }}">
-    <input type="email" name="email" placeholder="Email">
-    <input type="password" name="password" placeholder="Password Baru">
-    <input type="password" name="password_confirmation" placeholder="Konfirmasi">
-    <button type="submit">Reset</button>
-</form>
-</form>
+    <div class="card">
+        
+        <div class="header-green">
+            <h2>Reset Password</h2>
+        </div>
+        
+        <form method="POST" action="/reset-password">
+            @csrf
+            <input type="hidden" name="token" value="{{ $token }}">
+            <input type="email" name="email" placeholder="Email">
+            <input type="password" name="password" placeholder="Password Baru">
+            <input type="password" name="password_confirmation" placeholder="Konfirmasi">
+            <button type="submit">Reset</button>
+        </form>
+        </form>
 </body>
+
 </html>

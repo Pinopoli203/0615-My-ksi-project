@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Login</title>
     <style>
@@ -20,7 +21,7 @@
             width: 380px;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
@@ -43,7 +44,7 @@
         }
 
         /* Input field biar lonjong dan abu-abu */
-        input[type="text"], 
+        input[type="text"],
         input[type="password"] {
             width: 100%;
             padding: 15px 20px;
@@ -93,39 +94,47 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="card">
-    <div class="header-green">
-        <h2>Sign In</h2>
-    </div>
+    <div class="card">
+        <div class="header-green">
+            <h2>Sign In</h2>
+        </div>
 
-    @if ($errors->any())
-    <div style="color:red; margin-bottom:15px;">
-        @foreach ($errors->all() as $error)
-            <p>{{ $error }}</p>
-        @endforeach
-    </div>
-    @endif
+        @if (session('success'))
+            <div style="color: green; margin-bottom:15px;">
+                {{ session('success') }}
+            </div>
+        @endif
 
-    <form method="POST" action="/login">
-        @csrf
-       <input type="text" name="login" value="{{ old('login') }}" placeholder="Username atau Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        
-        <button type="submit">SIGN IN</button>
-        <p style="margin-top:10px; font-size:13px;">
-        <a href="/forgot-password" style="color:#5cb85c; text-decoration:none;">
-            Lupa Password?
-        </a>
-    </p>
-    </form>
+        @if ($errors->any())
+            <div style="color:red; margin-bottom:15px;">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
 
-    <div class="footer-text">
-        Belum punya akun?
-        <a href="/register">SIGN UP NOW</a>
+        <form method="POST" action="/login">
+            @csrf
+            <input type="text" name="login" value="{{ old('login') }}" placeholder="Username atau Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+
+            <button type="submit">SIGN IN</button>
+            <p style="margin-top:10px; font-size:13px;">
+                <a href="/forgot-password" style="color:#5cb85c; text-decoration:none;">
+                    Lupa Password?
+                </a>
+            </p>
+        </form>
+
+        <div class="footer-text">
+            Belum punya akun?
+            <a href="/register">SIGN UP NOW</a>
+        </div>
     </div>
-</div>
 
 </body>
+
 </html>

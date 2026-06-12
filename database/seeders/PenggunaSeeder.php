@@ -14,12 +14,12 @@ class PenggunaSeeder extends Seeder
             [
                 'username' => 'admin',
                 'email' => 'admin123@mail.com',
-                'password' => Hash::make('1234')
+                'password' => Hash::make('Password1234')
             ],
             [
                 'username' => 'andre',
                 'email' => 'andre24@mail.com',
-                'password' => Hash::make('4321')
+                'password' => Hash::make('Password4321')
             ]
         ]);
     }

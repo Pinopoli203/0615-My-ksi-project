@@ -102,6 +102,20 @@
         <h2>Lupa Password</h2>
     </div>
 
+    @if (session('status'))
+            <p style="color: green; margin-bottom: 15px;">
+                {{ session('status') }}
+            </p>
+        @endif
+
+        @if ($errors->any())
+            <div style="color:red; margin-bottom:15px;">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
+        
     <form method="POST" action="/forgot-password">
     @csrf
     <input type="email" name="email" placeholder="Email">
